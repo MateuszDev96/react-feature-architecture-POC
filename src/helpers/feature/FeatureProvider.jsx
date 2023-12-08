@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Context } from './context'
 import { CombineProviders } from '../CombineProviders'
-import { flushSync } from 'react-dom'
 
 const SetupAfterMount = ({ setup }) => {
   setup()
