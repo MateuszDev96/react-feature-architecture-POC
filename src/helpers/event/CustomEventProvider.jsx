@@ -2,10 +2,12 @@ import { useMemo } from 'react'
 import { Context } from './context'
 
 export const CustomEventProvider = ({ children }) => {
+  console.log('call')
   const target = useMemo(() => new EventTarget(), [])
 
   const addCustomListener = (type, fn) => {
     target.addEventListener(type, fn)
+    return () => target.removeEventListener(type, fn)
   }
 
   const dispatchCustomEvent = (type, value) => {

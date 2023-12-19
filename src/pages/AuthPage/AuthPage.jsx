@@ -10,8 +10,8 @@ const TabsState = ({ children }) => {
   return children({ value, onChange })
 }
 
-const Context = createContext({ hehe: 'outside context' })
-export const sss = () => useContext(Context)
+const Context = createContext("outside context")
+export const useAuthPageContext = () => useContext(Context)
 
 export const AuthPage = () => {
   return (
@@ -24,7 +24,7 @@ export const AuthPage = () => {
               <Tab label="login" value={1} />
               <Tab label="signup" value={2} />
             </Tabs>
-            <Context.Provider value={{ hehe: 'inside context' }}>
+            <Context.Provider value="inside context">
               {value === 1 ? <Inject name="LoginForm" /> : null}
               {value === 2 ? <Inject name="SignupForm" /> : null}
             </Context.Provider>

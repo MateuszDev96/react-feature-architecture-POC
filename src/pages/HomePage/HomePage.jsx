@@ -14,5 +14,6 @@ export const HomePage = () => {
   useInject("appbar:end", () => <div>end</div>)
   useInject("layout:content", () => <Inject name="UserAuth" />)
 
+  return 'home'
   return <Layout />
 }
