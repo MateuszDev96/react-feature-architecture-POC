@@ -1,16 +1,21 @@
 .root {
   display: flex;
   width: 100%;
+  background-color: #0a7444;
+  color: #ffffff;
+  padding: 4px 8px;
 }
 
 .start {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   width: 50%;
 }
 
 .end {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: 50%;
 }
