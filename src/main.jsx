@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import { RouterProvider, Outlet, createBrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material'
 
 import { FeatureProvider, useFeature } from './helpers/feature'
@@ -20,27 +20,20 @@ const App = () => {
     useFeature(featureUserSettings())
   }
 
-  const router = createBrowserRouter([{
-    path: '/auth',
-    element: (
-      <CustomEventProvider>
-        <InjectProvider>
-          <FeatureProvider setup={featureSetup}>
-            <AuthPage />
-          </FeatureProvider>
-        </InjectProvider>
-      </CustomEventProvider>
-    ),
-  }, {
-    path: '/',
-    element: <HomePage />,
-  }])
-
   return (
     <ThemeProvider theme={createTheme({})}>
-      <RouterProvider router={router}>
-        <Outlet />
-      </RouterProvider>
+      <BrowserRouter>
+        <CustomEventProvider>
+          <InjectProvider>
+            <FeatureProvider setup={featureSetup}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/auth" element={<AuthPage />} />
+              </Routes>
+            </FeatureProvider>
+          </InjectProvider>
+        </CustomEventProvider>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }

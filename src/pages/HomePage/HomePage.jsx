@@ -1,19 +1,24 @@
+import { Button } from '@mui/material'
 import { Layout } from '../../styles/Layout'
 import { useInject } from '../../helpers/inject/useInject'
-import { Inject } from '../../helpers/inject/Inject'
 import { AppBar } from '../../shared/ui/AppBar'
+import { useNavigate } from 'react-router-dom'
 
 export const HomePage = () => {
+  const navigate = useNavigate()
+
   useInject('layout:header', () => (
     <AppBar
-      start={<Inject name="appbar:start" />}
-      end={<Inject name="UserInfo" />}
+      start={<div>Logo</div>}
+      end={<Button onClick={() => navigate('/auth')}>logout</Button>}
     />
   ))
-  useInject("appbar:start", () => <div>start</div>)
-  useInject("appbar:end", () => <div>end</div>)
-  useInject("layout:content", () => <Inject name="UserAuth" />)
 
-  return 'home'
+  useInject('layout:content', () => {
+    return (
+      <div>lll</div>
+    )
+  })
+
   return <Layout />
 }

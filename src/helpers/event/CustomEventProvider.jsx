@@ -1,9 +1,12 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Context } from './context'
 
 export const CustomEventProvider = ({ children }) => {
-  console.log('call')
   const target = useMemo(() => new EventTarget(), [])
+  
+  useEffect(() => {
+    console.log('onMount - CustomEventProvider')
+  }, [])
 
   const addCustomListener = (type, fn) => {
     target.addEventListener(type, fn)

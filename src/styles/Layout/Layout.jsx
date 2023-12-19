@@ -3,7 +3,7 @@ import classes from './classes.module.css'
 
 export const Layout = () => {
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-id="Layout">
       <div className={classes.header}>
         <Inject name="layout:header" />
       </div>

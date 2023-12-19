@@ -1,10 +1,7 @@
 import { Button } from '@mui/material'
-import { useAuthPageContext } from '../../../../pages/AuthPage/AuthPage'
 import { useCustomEvent } from '../../../../helpers/event'
 
 export const LoginForm = () => {
-  console.log('useAuthPageContext', useAuthPageContext())
-
   const { dispatchCustomEvent } = useCustomEvent()
   const handleLogin = () => dispatchCustomEvent('login')
 

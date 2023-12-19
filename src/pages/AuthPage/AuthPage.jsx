@@ -1,5 +1,5 @@
 import { Tabs, Tab } from '@mui/material'
-import { createContext, useContext, useState } from 'react'
+import { useState } from 'react'
 import { Inject } from '../../helpers/inject'
 
 const TabsState = ({ children }) => {
@@ -9,9 +9,6 @@ const TabsState = ({ children }) => {
 
   return children({ value, onChange })
 }
-
-const Context = createContext("outside context")
-export const useAuthPageContext = () => useContext(Context)
 
 export const AuthPage = () => {
   return (
@@ -24,10 +21,8 @@ export const AuthPage = () => {
               <Tab label="login" value={1} />
               <Tab label="signup" value={2} />
             </Tabs>
-            <Context.Provider value="inside context">
-              {value === 1 ? <Inject name="LoginForm" /> : null}
-              {value === 2 ? <Inject name="SignupForm" /> : null}
-            </Context.Provider>
+            {value === 1 ? <Inject name="LoginForm" /> : null}
+            {value === 2 ? <Inject name="SignupForm" /> : null}
           </>
         )}
       </TabsState>

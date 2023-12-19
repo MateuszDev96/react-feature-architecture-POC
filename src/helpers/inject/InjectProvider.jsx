@@ -20,7 +20,7 @@ export const InjectProvider = ({ children }) => {
   const handleUninstallInject = (name) => {
     setJnjects((prev) => {
       const copy = new Map(prev)
-      copy.set(name)
+      copy.delete(name)
       return copy
     })
   }
