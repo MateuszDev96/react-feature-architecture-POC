@@ -6,8 +6,8 @@ export const useInject = (name, component, isInjected = true) => {
 
   useEffect(() => {
     if (injectContext && isInjected) {
-      const { handleInstallInject } = injectContext
-
+      const { handleInstallInject, handleUninstallInject } = injectContext
+      
       handleInstallInject(name, component)
       return () => handleUninstallInject(name)
     }

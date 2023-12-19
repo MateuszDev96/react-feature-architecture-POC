@@ -7,6 +7,11 @@ export const InjectProvider = ({ children }) => {
   const handleInstallInject = (name, component) => {
     setJnjects((prev) => {
       const copy = new Map(prev)
+
+      if (prev.has(name)) {
+        throw new Error(`[InjectProvider] \`<Inject name="${name}"\` already exists`)
+      }
+
       copy.set(name, () => component())
       return copy
     })

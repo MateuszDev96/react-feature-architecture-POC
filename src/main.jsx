@@ -1,30 +1,43 @@
 import { createRoot } from 'react-dom/client'
+import { Outlet } from 'react-router-dom'
+import { ThemeProvider, createTheme } from '@mui/material'
+
 import { FeatureProvider, useFeature } from './helpers/feature'
-import { InjectProvider, Inject } from './helpers/inject'
+import { InjectProvider } from './helpers/inject'
 import { CustomEventProvider } from './helpers/event'
+import { useRouter, RouterProvider } from './helpers/router'
 
-import { featureAuth } from './features/FeatureAuth'
-import { featureDashboard } from './features/FeatureDashboard'
-import { featureCounter } from './features/FeatureCounter'
-import { featureDoNothing } from './features/FeatureDoNothing'
+import { featureUserAuth } from './domains/domain-user/feature-user-auth'
+import { featureUserInfo } from './domains/domain-user/feature-user-info'
+import { featureUserSettings } from './domains/domain-user/feature-user-settings'
 
+import { homePage } from './pages/HomePage'
+import { authPage } from './pages/AuthPage'
 
 const App = () => {
-  const setup = () => {
-    useFeature(featureAuth())
-    useFeature(featureDashboard())
-    useFeature(featureCounter())
-    useFeature(featureDoNothing())
+  const featureSetup = () => {
+    useFeature(featureUserAuth())
+    useFeature(featureUserInfo())
+    useFeature(featureUserSettings())
+  }
+
+  const routerSetup = () => {
+    useRouter(authPage())
+    useRouter(homePage())
   }
 
   return (
-    <CustomEventProvider>
-      <InjectProvider>
-        <FeatureProvider setup={setup}>
-          <Inject name="root" />
-        </FeatureProvider>
-      </InjectProvider>
-    </CustomEventProvider>
+    <ThemeProvider theme={createTheme({})}>
+      <CustomEventProvider>
+        <InjectProvider>
+          <FeatureProvider setup={featureSetup}>
+            <RouterProvider setup={routerSetup}>
+              <Outlet />
+            </RouterProvider>
+          </FeatureProvider>
+        </InjectProvider>
+      </CustomEventProvider>
+    </ThemeProvider>
   )
 }
 

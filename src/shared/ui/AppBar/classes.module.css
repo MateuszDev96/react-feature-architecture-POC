@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  width: 100%;
+}
+
+.start {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.end {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+}
